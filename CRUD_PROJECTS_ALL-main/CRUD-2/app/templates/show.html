@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+    <table class="table table-striped table-striped table-sm table-dark">
+        <thead class="thead-dark">
+            <tr>
+                <th>Student Rollno</th>
+                <th>Student Name</th>
+                <th>Student Subject</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if not students %}
+                <tr align="center">
+                    <td colspan="4">No Records Found</td>
+                </tr>
+            {% else %}
+                {% for student in students %}
+                    <tr>
+                        <td>{{ student.rollno }}</td>
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.subject }}</td>
+                        <td>
+                            <a href="/update/{{ student.rollno }}" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-pencil">Edit</span>
+                            </a>&nbsp;&nbsp;
+                            <a href="/delete/{{ student.rollno }}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+    <center><a href="/stu" class="btn btn-primary">Add New Record</a></center>
+</body>
+</html>
